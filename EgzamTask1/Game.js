@@ -9,6 +9,11 @@ module.exports = class Game {
       y: this.ball.position.y,
     };
     this.wallHits = 0;
+    this.movesCounter = 0;
+  }
+
+  addMoves() {
+    this.movesCounter++;
   }
 
   addWallHit() {
@@ -47,11 +52,13 @@ module.exports = class Game {
       }
 
       this.ball.move();
-      //   console.log(board);
+      this.addMoves();
+      console.log(this.ball.position);
     } while (
       this.ball.position.x !== this.initialBallPosition.x ||
       this.ball.position.y !== this.initialBallPosition.y
     );
     console.log("TOTAL NUMBER OF HITS:", this.wallHits);
+    console.log("TOTAL NUMBER OF MOVES:", this.movesCounter);
   }
 };
